@@ -27,3 +27,10 @@ Algoritmos de recorrido:
 - DFS
 - DIJKSTRA
 - KRUSKAL
+
+Nota: La librería gráfica usada para realizar este proyecto, es Javafx 11, si se quiere compilar, preferiblemente debe descargarla desde el sitio oficial.
+Aquí el link: https://gluonhq.com/products/javafx/
+
+Simplemente se deben añadir las librerias al proyecto, y vmArgs, poner lo siguiente: 
+"--module-path C:/Users/usuario/OneDrive/Documentos/JavaFX/javafx-sdk-11.0.2/lib --add-modules javafx.controls,javafx.fxml"
+                    ^ Aquí la ruta donde tienen las librerias del Javafx
