@@ -166,12 +166,7 @@ public class VentanaController implements Initializable {
         if (archivo != null) {
             //si el archivo no se leyó correctamente, asignará a archivo null
             if (!leerTxt(archivo.getAbsolutePath())) {
-                alert.setAlertType(Alert.AlertType.ERROR);
-                alert.setTitle("Error");
-                alert.setContentText("El archivo seleccionado no coincide con los parámetros establecidos");
-                alert.showAndWait(); 
-                alert.setAlertType(Alert.AlertType.INFORMATION);
-                alert.setTitle("Información");
+                
                 archivo = null;
             }
             //si no, se manda la alerta de que el arhivo fue cargado con éxito
@@ -220,83 +215,34 @@ public class VentanaController implements Initializable {
                 //si cont es 1, entonces significa que está leyendo la línea 1
                 if (cont == 1){
                     
-                    //se valida 
-                    for (int i=0; i<linea.length(); i++){
-                        char caracter = linea.charAt(i);
-                        if(!Character.isDigit(caracter)) {
-                            alerta();
-                            return false;
-                        }
-                    } 
+                    //se valida que sea una cadena entera
+                    if (!linea.matches("^[0-9]*$")){
+                        alerta();
+                        return false;
+                    }
                     
                 }
                 //si cont es mayor a 1, estará leyendo las siguientes lineas a la 1
                 else{
                     
-                    //se valida el primer número
-                    n1 = Integer.parseInt(Character.toString(linea.charAt(0)));
-                    if(!Character.isDigit(Integer.toString(n1).charAt(0))){
-                        alerta();
-                        return false;
-                    }
-                    
-                    //se valida la primera coma
-                    char a = linea.charAt(1);
-                    String convertido = Character.toString(a);
-                    
-                    if(!convertido.equals(",")){
-                        alerta();
-                        return false;
-                    }
-                    
-                    //se valida el espacio
-                    if(!Character.isSpaceChar(linea.charAt(2))){
-                        alerta();
-                        return false;
-                    }
-                   
-                    
-                    //primera coma
-                    
-                    //se valida el segundo número
-                    n2 = Integer.parseInt(Character.toString(linea.charAt(3)));
-                    if(!Character.isDigit(Integer.toString(n2).charAt(0))){
-                        alerta();
-                        return false;
-                    }
-                    
-                    //se valida la segunda coma
-                    a = linea.charAt(4);
-                    convertido = Character.toString(a);
-                    
-                    if(!convertido.equals(",")){
-                        alerta();
-                        return false;
-                    }
-                    
-                    //se valida el espacio
-                    if(!Character.isSpaceChar(linea.charAt(5))){
-                        alerta();
-                        return false;
-                    }
-                    
-                    
-                    //segunda coma
-                    
-                    //se valida el último número
-                    
-                    n3 = Integer.parseInt(Character.toString(linea.charAt(6)));
-                    if(!Character.isDigit(Integer.toString(n3).charAt(0))){
-                        alerta();
-                        return false;
-                    }
-                    
-                    //se añade a una lista vectorial, los tres números
-                    lista[cont-2].add(n1);
+                    //se dividen la cadena en las partes numéricas
+                    String [] partes = linea.split(", ");
 
-                    lista[cont-2].add(n2);
+                    //se comprueba si cada una de las partes es un número entero
+                    if(!partes[0].matches("^[0-9]*$") || !partes[1].matches("^[0-9]*$") || !partes[2].matches("^[0-9]*$")){
+                        alerta();
+                        return false;
+                    }
 
-                    lista[cont-2].add(n3);
+                    //se agregan los valores verificados a cada uno de las variables
+                    n1 = Integer.parseInt(partes[0]);
+                    n2 = Integer.parseInt(partes[1]);
+                    n3 = Integer.parseInt(partes[2]);
+
+                    //finalmente se agregan a la lista vectorial, los valores recogidos
+                    lista[cont-2].add(n1);  // nodo inicio
+                    lista[cont-2].add(n2);  // nodo fin
+                    lista[cont-2].add(n3);  // peso de la unión
                     
                 }
                 cont++;
@@ -306,6 +252,7 @@ public class VentanaController implements Initializable {
             //se asigna la cantidad de enlaces o aristas
             cant_aristas = cont-2;
 
+            //si hay más nodos que aristas, significa que el grafo está incorrecto
             if(cant_aristas < cant_nodos){
                 alerta();
                 return false;
@@ -314,6 +261,7 @@ public class VentanaController implements Initializable {
             return true;
         } 
         catch (Exception e) {
+            alerta();
             return false;
         }
     }
