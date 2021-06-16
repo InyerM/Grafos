@@ -1,0 +1,32 @@
+.botones{
+    -fx-background-color:  #750400;
+}
+
+.botones:hover{
+    -fx-background-color: #c4403b;
+}
+
+.botones:focused{
+    -fx-background-color: #330200;
+    -fx-border-color: #fff;
+    -fx-border-width: 0px 0px 0px 3px;
+}
+
+
+
+.b{
+   -fx-background-color: #ad0600; 
+}
+
+.b:hover{
+   -fx-background-color: #c4403b; 
+}
+
+
+.barraL{
+    -fx-background-color:  #750400;
+}
+
+.mainFxmlClass {
+    
+}
