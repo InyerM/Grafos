@@ -33,4 +33,6 @@ Aquí el link: https://gluonhq.com/products/javafx/
 
 Simplemente se deben añadir las librerias al proyecto, y vmArgs, poner lo siguiente: 
 "--module-path C:/Users/usuario/OneDrive/Documentos/JavaFX/javafx-sdk-11.0.2/lib --add-modules javafx.controls,javafx.fxml"
-                    ^ Aquí la ruta donde tienen las librerias del Javafx
+
+En la ruta, deben poner la ruta donde se encuentran las librerias descargadas del JavaFx
+                    
